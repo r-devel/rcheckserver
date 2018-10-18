@@ -10,7 +10,7 @@ RUN apt-get -y update && \
     debian-keyring
 
 # load keys
-RUN gpg --keyserver pgp.mit.edu --recv-keys 3B1C3B572302BCB1 && \
+RUN gpg --keyserver https://keyserver.ubuntu.com --recv-keys 3B1C3B572302BCB1 && \
     gpg --armor --export 3B1C3B572302BCB1 | apt-key add -
 
 # install rcheckserver
