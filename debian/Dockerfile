@@ -19,8 +19,8 @@ RUN gpg --recv-keys 3B1C3B572302BCB1 && \
 
 ## Use Debian unstable via pinning -- new style via APT::Default-Release
 RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list && \
-	echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
-	echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default && \
+    echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
+    echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default && \
     apt-get -y update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver
 
