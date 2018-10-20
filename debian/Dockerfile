@@ -24,6 +24,15 @@ RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/
     apt-get -y update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver
 
+## Set a default user. Available via runtime flag
+## Add user to 'staff' group, granting them write privileges to
+## /usr/local/lib/R/site.library
+## User should also have & own a home directory
+RUN useradd docker \
+	&& mkdir /home/docker \
+	&& chown docker:docker /home/docker \
+	&& addgroup docker staff
+
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
