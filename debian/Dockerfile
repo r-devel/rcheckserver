@@ -1,4 +1,4 @@
-FROM debian:testing
+FROM debian:buster
 
 RUN \
   apt-get update && \
@@ -17,16 +17,13 @@ ENV LANG en_US.UTF-8
 RUN gpg --recv-keys 3B1C3B572302BCB1 && \
     gpg --armor --export 3B1C3B572302BCB1 | apt-key add -
 
-## Use Debian unstable via pinning -- new style via APT::Default-Release
-RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list && \
-    echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
-    echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default && \
+RUN echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
     apt-get -y update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-LABEL maintainer "krikava@gmail.com"
+LABEL maintainer "jeroen@berkeley.edu"
 
 CMD ["R"]
