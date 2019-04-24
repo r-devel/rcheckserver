@@ -4,7 +4,7 @@ RUN \
   apt-get update && \
   apt-get -y dist-upgrade && \
   DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev \
-  locales cloc curl parallel vim wget debian-keyring
+  locales cloc curl parallel vim wget debian-keyring git
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen en_US.utf8 \
@@ -21,8 +21,8 @@ RUN echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc
     apt-get -y update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver
 
-ADD entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+# ADD entrypoint.sh /entrypoint.sh
+# ENTRYPOINT ["/entrypoint.sh"]
 
 LABEL maintainer "jeroen@berkeley.edu"
 
