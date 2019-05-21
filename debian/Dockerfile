@@ -4,7 +4,8 @@ RUN \
   apt-get update && \
   apt-get -y dist-upgrade && \
   DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev \
-  locales cloc curl parallel vim wget debian-keyring git
+  locales cloc curl parallel vim wget debian-keyring git \
+  libnode-dev libarchive-dev
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen en_US.utf8 \
