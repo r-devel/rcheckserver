@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM debian:testing
 
 RUN \
   apt-get update && \
