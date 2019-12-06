@@ -27,4 +27,13 @@ RUN echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc
 # ADD entrypoint.sh /entrypoint.sh
 # ENTRYPOINT ["/entrypoint.sh"]
 
+## Set a default user. Available via runtime flag
+## Add user to 'staff' group, granting them write privileges to
+## /usr/local/lib/R/site.library
+## User should also have & own a home directory
+RUN useradd docker \
+  && mkdir /home/docker \
+  && chown docker:docker /home/docker \
+  && addgroup docker staff
+
 CMD ["R"]
