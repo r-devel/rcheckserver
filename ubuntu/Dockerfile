@@ -9,7 +9,7 @@ RUN \
   DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev \
   language-pack-en-base cloc curl parallel vim wget debian-keyring
 
-RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfe6b0f6d941769e0b8ee7c3c3b1c3b572302bcb1" | apt-key add -
+RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfe6b0f6d941769e0b8ee7c3c3b1c3b572302bcb1" | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -
 
 # hack for broken lam4-dev
 RUN touch /usr/share/man/man3/MPI_Comm_set_name_lam4-dev.3.gz
