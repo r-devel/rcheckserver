@@ -3,6 +3,9 @@ FROM ubuntu:focal
 RUN \
     apt-get update && \
     apt-get -y dist-upgrade && \
+    apt-get install -y apt-utils software-properties-common && \
+    add-apt-repository -y ppa:marutter/rrutter4.0 && \
+    apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring equivs
 
 ENV LC_ALL en_US.UTF-8
