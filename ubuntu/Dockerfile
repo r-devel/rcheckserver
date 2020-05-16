@@ -6,15 +6,10 @@ RUN \
     apt-get install -y apt-utils software-properties-common && \
     add-apt-repository -y ppa:marutter/rrutter4.0 && \
     apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring equivs
+    DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
-
-RUN equivs-control ipython && \
-	sed -i 's/Package:.*/Package: ipython/' ipython && \
-	equivs-build ipython && \
-	dpkg -i ipython_1.0_all.deb
 
 RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfe6b0f6d941769e0b8ee7c3c3b1c3b572302bcb1" | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -
 
