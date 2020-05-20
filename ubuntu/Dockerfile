@@ -5,6 +5,7 @@ RUN \
     apt-get -y dist-upgrade && \
     apt-get install -y apt-utils software-properties-common && \
     add-apt-repository -y ppa:marutter/rrutter4.0 && \
+    add-apt-repository -y ppa:c2d4u.team/c2d4u4.0+ && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring
 
