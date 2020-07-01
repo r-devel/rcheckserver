@@ -22,9 +22,6 @@ RUN echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc
     apt-get -y update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver
 
-# ADD entrypoint.sh /entrypoint.sh
-# ENTRYPOINT ["/entrypoint.sh"]
-
 ## Set a default user. Available via runtime flag
 ## Add user to 'staff' group, granting them write privileges to
 ## /usr/local/lib/R/site.library
@@ -33,5 +30,10 @@ RUN useradd docker \
   && mkdir /home/docker \
   && chown docker:docker /home/docker \
   && addgroup docker staff
+
+## Set RSPM as the default repo to get precompiled packages
+RUN RPROFILE=$(R RHOME)/etc/Rprofile.site && \
+    echo 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"))' >> "$RPROFILE" && \
+    echo 'options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version$platform, R.version$arch, R.version$os)))' >> "$RPROFILE"
 
 CMD ["R"]
