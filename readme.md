@@ -1,4 +1,7 @@
-# rcheckserver [![badge](https://images.microbadger.com/badges/image/cran/debian.svg)](https://hub.docker.com/u/cran)
+# rcheckserver [![badge](https://img.shields.io/docker/cloud/build/cran/debian)](https://hub.docker.com/u/cran)
+
+ - Debian image: ![debian](https://img.shields.io/docker/image-size/cran/debian/latest)
+ - Ubuntu image: ![ubuntu](https://img.shields.io/docker/image-size/cran/ubuntu/latest)
 
 > Docker images with a complete Debian CRAN check server
 
@@ -18,4 +21,6 @@ To quickly test if a package can be built:
 docker run --rm -it cran/debian R -e 'install.packages("sf")'
 ```
 
-The CRAN team always uses the [Debian testing](https://packages.debian.org/testing/) branch. This repository also provides an alternative based on the latest Ubuntu (LTS) server with R backports from the [ppa:marutter/rrutter](https://launchpad.net/~marutter/+archive/ubuntu/rrutter).
+The CRAN team always uses the [Debian testing](https://packages.debian.org/testing/) branch, which is also what our Debian images use.
+
+We also provides an alternative image based on the latest Ubuntu (LTS) server with R backports from [CRAN](https://cran.r-project.org/bin/linux/ubuntu/). This image is smaller and more stable.

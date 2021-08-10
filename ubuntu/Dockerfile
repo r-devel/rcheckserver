@@ -3,9 +3,9 @@ FROM ubuntu:focal
 RUN \
     apt-get update && \
     apt-get -y dist-upgrade && \
-    apt-get install -y apt-utils software-properties-common && \
-    add-apt-repository -y ppa:marutter/rrutter4.0 && \
-    add-apt-repository -y ppa:c2d4u.team/c2d4u4.0+ && \
+    apt-get install -y apt-utils curl software-properties-common dirmngr && \
+    curl https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
+    add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring
 
