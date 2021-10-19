@@ -16,7 +16,8 @@ ENV LANG en_US.UTF-8
 RUN equivs-control libidn-dev && \
 	sed -i 's/Package:.*/Package: libidn-dev/' libidn-dev && \
 	equivs-build libidn-dev && \
-	dpkg -i libidn-dev_1.0_all.deb
+	dpkg -i libidn-dev_1.0_all.deb && \
+	rm -Rf libidn-dev libidn-dev_1.0_all.deb
 
 RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfe6b0f6d941769e0b8ee7c3c3b1c3b572302bcb1" | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -
 
