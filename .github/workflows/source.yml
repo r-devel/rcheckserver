@@ -1,0 +1,55 @@
+name: Update rcheckserver source
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    container: debian:testing
+    steps:
+      - name: Download latest rcheckserver sources
+        run: |
+          apt-get update && \
+          apt-get install -y curl gnupg && \
+          curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfe6b0f6d941769e0b8ee7c3c3b1c3b572302bcb1" | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -  && \
+          echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
+          apt-get -y update 
+          apt download rcheckserver &&\
+          dpkg -x rcheckserver*.deb files &&\
+          gunzip files/usr/share/doc/rcheckserver/changelog.gz &&\
+          cp -f files/usr/share/doc/rcheckserver/* . &&\
+          dpkg --ctrl-tarfile rcheckserver*.deb | tar xv
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: |
+            control
+            changelog
+            copyright
+
+  commit:
+    needs: download
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: artifacts
+          path: artifacts
+
+      - name: push
+        if: success() && github.ref == 'refs/heads/master'
+        run: |
+          cp -f artifacts/* source/
+          echo "pushing changes to github"
+          git config --global user.email "jeroenooms@gmail.com"
+          git config --global user.name "Jeroen Ooms"
+          git add source
+          git commit -m "Update at $(date)" || exit 0
+          git push
