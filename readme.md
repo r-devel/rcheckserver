@@ -9,7 +9,7 @@ The CRAN team maintains a [debian meta package](http://statmath.wu.ac.at/AASC/de
 
 ## How to use
 
-The CRAN team always uses the [Debian testing](https://packages.debian.org/testing/) distribution, which is also what our Debian images use. This is a rolling branch, which means system libraries get continously updated, and may get breaking changes.
+The CRAN team always uses the [Debian testing](https://packages.debian.org/testing/) distribution, which is also what [our Debian image](debian/Dockerfile) uses. This is a rolling branch, which means system libraries get continously updated, and may get breaking changes.
 
 ```sh
 # Get the latest image
@@ -22,10 +22,14 @@ docker run --rm -it cran/debian bash
 To quickly test if a package can be built:
 
 ```sh
-docker run --rm -it cran/debian R -e 'install.packages("sf")'
+docker run --rm -it cran/debian R -e 'install.packages("pdftools")'
 ```
 
-Alternatively, we provide a similar environment based on the latest Ubuntu (LTS) server, with the latest R installed from [CRAN](https://cran.r-project.org/bin/linux/ubuntu/). This image is smaller and stable, with slightly older system libraries than Debian, and only non-breaking updates.
+Alternatively, our [ubuntu based image](ubuntu/Dockerfile) provides a similar environment based on the latest Ubuntu (LTS) server, but with the latest R installed from [CRAN](https://cran.r-project.org/bin/linux/ubuntu/). This image is smaller and more stable, with slightly older system libraries than Debian, and only non-breaking updates.
+
+```sh
+docker run --rm -it cran/ubuntu R -e 'install.packages("magick")'
+```
 
 ## Source code
 
