@@ -1,3 +1,9 @@
+rcheckserver (2.16.22) stable; urgency=high
+
+  * added tidy
+
+ -- Yusuf Alimli <yusuf.alimli@wu.ac.at>  Mon, 21 Feb 2022 16:04:00 +0100
+
 rcheckserver (2.16.21) stable; urgency=high
 
   * added libtiledb-dev
