@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 RUN \
     apt-get update && \
@@ -7,23 +7,18 @@ RUN \
     curl https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
     add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
     apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring equivs
+    DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
-
-# Temporary workarounds, remove when bumping to Ubuntu 22.04
-RUN equivs-control libidn-dev && \
-	sed -i 's/Package:.*/Package: libidn-dev/' libidn-dev && \
-	equivs-build libidn-dev && \
-	dpkg -i libidn-dev_1.0_all.deb && \
-	rm -Rf libidn-dev libidn-dev_1.0_all.deb &&\
-	add-apt-repository ppa:cran/tiledb
 
 RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfe6b0f6d941769e0b8ee7c3c3b1c3b572302bcb1" | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -
 
 # hack for broken lam4-dev
 RUN touch /usr/share/man/man3/MPI_Comm_set_name_lam4-dev.3.gz
+
+# Hack for ubuntu jammy repo out of sync with docker
+RUN apt-get install -y libudev1=249.11-0ubuntu3 --allow-downgrades
 
 # install rcheckserver
 RUN echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
@@ -41,7 +36,7 @@ RUN useradd docker \
 
 ## Set RSPM as the default repo to get precompiled packages
 RUN RPROFILE=$(R RHOME)/etc/Rprofile.site && \
-    echo 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"))' >> "$RPROFILE" && \
+    echo 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/__linux__/jammy/latest"))' >> "$RPROFILE" && \
     echo 'options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version$platform, R.version$arch, R.version$os)))' >> "$RPROFILE"
 
 CMD ["R"]
