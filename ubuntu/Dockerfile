@@ -17,9 +17,6 @@ RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfe6b0f6d941769
 # hack for broken lam4-dev
 RUN touch /usr/share/man/man3/MPI_Comm_set_name_lam4-dev.3.gz
 
-# Hack for ubuntu jammy repo out of sync with docker
-RUN apt-get install -y libudev1=249.11-0ubuntu3 --allow-downgrades
-
 # install rcheckserver
 RUN echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
     apt-get -y update && \
