@@ -1,3 +1,15 @@
+rcheckserver (2.16.27) stable; urgency=high
+  * removed libtiledb-dev
+ -- Guenter Stohl <gstohl@wu.ac.at>  Fri, 26 Aug 2022 13:20:00 +0100
+
+rcheckserver (2.16.26) stable; urgency=high
+  * removed libtiledb-dev
+ -- Guenter Stohl <gstohl@wu.ac.at>  Fri, 26 Aug 2022 12:59:00 +0100
+
+rcheckserver (2.16.25) stable; urgency=high
+  * removed libtiledb-dev
+ -- Guenter Stohl <gstohl@wu.ac.at>  Fri, 26 Aug 2022 12:34:00 +0100
+
 rcheckserver (2.16.24) stable; urgency=high
 
   * added libblas-dev, liblapack-dev
