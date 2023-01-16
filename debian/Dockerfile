@@ -3,13 +3,15 @@ FROM debian:testing
 RUN \
 	apt-get update && \
 	apt-get -y dist-upgrade && \
-	DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev \
-	locales cloc curl parallel vim wget debian-keyring git \
-	libnode-dev libarchive-dev
+	DEBIAN_FRONTEND=noninteractive apt-get -yq install \
+	locales cloc curl parallel vim wget debian-keyring git
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen en_US.utf8 \
 	&& /usr/sbin/update-locale LANG=en_US.UTF-8
+
+RUN curl -Ls https://github.com/r-lib/rig/releases/download/latest/rig-linux-latest.tar.gz | tar xz -C /usr/local
+RUN rig add devel
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
