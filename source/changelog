@@ -1,8 +1,12 @@
+rcheckserver (2.16.33) stable; urgency=high
+  * removed mosek
+ -- Guenter Stohl <gstohl@wu.ac.at>  Fri, 6 Apr	 2023 15:15:00 +0100
+
 rcheckserver (2.16.32) stable; urgency=high
 
   * replaced liboctave-dev with octave-dev
   * replaced libtiff5-dev with libtiff-dev
-  * replaced ttf-sjfonts with fonts-sjfonts
+  * replaced ttf-sjfonts with fonts-sjfont
 
  -- Yusuf Alimli <yusuf.alimli@wu.ac.at>  Mon, 20 Feb 2023 13:20:00 +0100
 
