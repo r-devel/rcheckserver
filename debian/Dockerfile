@@ -35,7 +35,7 @@ RUN \
 RUN useradd docker \
 	&& mkdir /home/docker \
 	&& chown docker:docker /home/docker \
-	&& addgroup docker staff
+	&& usermod -a -G staff docker
 
 LABEL maintainer "jeroen@berkeley.edu"
 
