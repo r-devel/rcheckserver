@@ -48,8 +48,8 @@ jobs:
         run: |
           cp -f artifacts/* source/
           echo "pushing changes to github"
-          git config --global user.email "jeroenooms@gmail.com"
-          git config --global user.name "Jeroen Ooms"
+          git config --global user.email '121622595+jeroen[bot]@users.noreply.github.com'
+          git config --global user.name  'Jeroen (via CI)'
           git add source
           git commit -m "Update at $(date)" || exit 0
           git push
