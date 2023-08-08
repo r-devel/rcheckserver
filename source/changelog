@@ -1,3 +1,21 @@
+rcheckserver (2.16.38) stable; urgency=high
+
+  * Added `libdeflate-dev` to depends. 
+
+ -- amando <amando.zanderigo@wu.ac.at>  Tue, 08 Aug 2023 10:58:00 +0100
+
+rcheckserver (2.16.37) stable; urgency=high
+
+  * Added `libdeflate-dev` to depends. 
+
+ -- amando <amando.zanderigo@wu.ac.at>  Tue, 08 Aug 2023 10:45:00 +0100
+
+rcheckserver (2.16.36) stable; urgency=high
+
+  * Added `libdeflate-dev` to depends.
+
+ -- amando <amando.zanderigo@wu.ac.at>  Tue, 08 Aug 2023 10:16:35 +0200
+
 rcheckserver (2.16.35) stable; urgency=high
 
   * added golang
