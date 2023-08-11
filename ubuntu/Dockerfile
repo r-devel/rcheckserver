@@ -7,7 +7,8 @@ RUN \
     curl https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
     add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
     apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring
+    DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring &&\
+    apt-get clean
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -20,7 +21,8 @@ RUN touch /usr/share/man/man3/MPI_Comm_set_name_lam4-dev.3.gz
 # install rcheckserver
 RUN echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
     apt-get -y update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver
+    DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver &&\
+    apt-get clean
 
 ## Set a default user. Available via runtime flag
 ## Add user to 'staff' group, granting them write privileges to
