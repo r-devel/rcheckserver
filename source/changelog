@@ -1,3 +1,10 @@
+rcheckserver (2.16.45) stable; urgency=high
+
+  * added libdeflate-dev
+
+ -- Yusuf Alimli <yusuf.alimli@wu.ac.at>  Tue, 29 Aug 2023 14:50:00 +0100
+
+
 rcheckserver (2.16.44) stable; urgency=high
 
   * Added `libdeflate-dev` to depends. 
