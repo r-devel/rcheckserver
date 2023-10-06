@@ -19,6 +19,9 @@ jobs:
       matrix:
         os: [ 'debian', 'ubuntu' ]
     steps:
+      - name: Free some disk space
+        run: rm -Rf /usr/share/dotnet /opt/ghc "/usr/local/share/boost" "$AGENT_TOOLSDIRECTORY"
+
       - name: Checkout
         uses: actions/checkout@v3
 
