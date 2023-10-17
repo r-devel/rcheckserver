@@ -35,7 +35,7 @@ RUN useradd docker \
 
 ## Set RSPM as the default repo to get precompiled packages
 RUN RPROFILE=$(R RHOME)/etc/Rprofile.site && \
-    echo 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/__linux__/jammy/latest"))' >> "$RPROFILE" && \
+    echo 'options(repos = c(CRAN = "https://p3m.dev/cran/__linux__/jammy/latest"))' >> "$RPROFILE" && \
     echo 'options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version$platform, R.version$arch, R.version$os)))' >> "$RPROFILE"
 
 CMD ["R"]
