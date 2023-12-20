@@ -1,3 +1,9 @@
+rcheckserver (2.16.47) stable; urgency=high
+
+  * Added default-d-compiler to depends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Wed, 20 Dec 2023 11:10:46 +0100
+
 rcheckserver (2.16.46) stable; urgency=high
 
   * Added libgrpc++-dev and protobuf-compiler-grpc to depends.
