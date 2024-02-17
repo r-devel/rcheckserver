@@ -1,3 +1,9 @@
+rcheckserver (2.16.48) stable; urgency=high
+
+  * Add libfluidsynth-dev to depends, and remove pvm-dev.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Sat, 17 Feb 2024 09:47:03 +0100
+
 rcheckserver (2.16.47) stable; urgency=high
 
   * Added default-d-compiler to depends.
