@@ -44,7 +44,7 @@ jobs:
           path: artifacts
 
       - name: push
-        if: success() && github.ref == 'refs/heads/master'
+        if: success() && github.ref == 'refs/heads/main'
         run: |
           cp -f artifacts/* source/
           echo "pushing changes to github"
