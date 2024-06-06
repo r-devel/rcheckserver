@@ -1,3 +1,9 @@
+rcheckserver (2.16.53) stable; urgency=high
+
+  * Remove libglade2-dev from recommends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Thu, 06 Jun 2024 09:06:58 +0200
+
 rcheckserver (2.16.52) stable; urgency=high
 
   * Move gretl and libsbml-dev from recommends to depends.
