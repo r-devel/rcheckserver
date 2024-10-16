@@ -1,3 +1,9 @@
+rcheckserver (2.16.54) stable; urgency=high
+
+  * add libflint-dev to depends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Mon, 30 Sep 2024 19:42:10 +0200
+
 rcheckserver (2.16.53) stable; urgency=high
 
   * Remove libglade2-dev from recommends.
