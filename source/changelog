@@ -1,3 +1,12 @@
+rcheckserver (2.16.56) stable; urgency=high
+
+  * Add libopenmpt-dev to depends.
+
+  * Move default-d-compiler and coinor-libsymphony-dev from depends to
+    recommends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Sat, 07 Dec 2024 17:19:47 +0100
+
 rcheckserver (2.16.55) stable; urgency=high
 
   * Move gretl from depends to recommends.
