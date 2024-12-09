@@ -10,11 +10,11 @@ on:
       - '.github/workflows/build.yml'
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 2 * * *"
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
