@@ -19,10 +19,8 @@ ENV LANG en_US.UTF-8
 # RUN gpg --recv-keys 3B1C3B572302BCB1 && \
 #    gpg --armor --export 3B1C3B572302BCB1 | apt-key add -
 
-RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfe6b0f6d941769e0b8ee7c3c3b1c3b572302bcb1" | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -
-
 RUN \
-	echo "deb http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
+	echo "deb [trusted=yes] http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
 	apt-get -y update && \
 	DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver &&\
 	apt-get clean
