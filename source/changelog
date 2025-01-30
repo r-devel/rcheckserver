@@ -1,3 +1,9 @@
+rcheckserver (2.16.58) stable; urgency=high
+
+  * Move openbugs from depends to recommends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Thu, 30 Jan 2025 15:38:24 +0100
+
 rcheckserver (2.16.57) stable; urgency=high
 
   * Change architecture from 'any' to 'all'.
