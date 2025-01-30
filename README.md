@@ -1,7 +1,9 @@
 # rcheckserver [![badge](https://github.com/r-devel/rcheckserver/actions/workflows/build.yml/badge.svg)](https://github.com/r-devel/rcheckserver/actions/workflows/build.yml)
 
- - Debian: [![debian](https://img.shields.io/docker/image-size/cran/debian/latest)](https://hub.docker.com/r/cran/debian)
- - Ubuntu: [![ubuntu](https://img.shields.io/docker/image-size/cran/ubuntu/latest)](https://hub.docker.com/r/cran/ubuntu)
+|          |  x86_64  |  ARM64   |
+|:--------:|:--------:|:--------:|
+| Debian   | [![debian](https://img.shields.io/docker/image-size/cran/debian)](https://hub.docker.com/r/cran/debian) | [![debian](https://img.shields.io/docker/image-size/cran/debian?arch=arm64)](https://hub.docker.com/r/cran/debian) |
+| Ubuntu   | [![ubuntu](https://img.shields.io/docker/image-size/cran/ubuntu)](https://hub.docker.com/r/cran/ubuntu)   | [![ubuntu](https://img.shields.io/docker/image-size/cran/ubuntu?arch=arm64)](https://hub.docker.com/r/cran/ubuntu) |
 
 > Docker images with a complete Debian CRAN check server
 
