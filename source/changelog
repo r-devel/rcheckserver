@@ -1,3 +1,9 @@
+rcheckserver (2.16.59) stable; urgency=high
+
+  * Move scala from depends to recommends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Thu, 06 Feb 2025 19:20:26 +0100
+
 rcheckserver (2.16.58) stable; urgency=high
 
   * Move openbugs from depends to recommends.
