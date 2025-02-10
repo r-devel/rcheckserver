@@ -51,7 +51,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.os }}
-          provenance: false
           push: true
           tags: |
             ghcr.io/${{github.repository}}/${{matrix.os}}:latest_${{matrix.arch}}
@@ -89,12 +88,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create multi-arch manifest
-        run: |
-          docker manifest create \
-            ghcr.io/${{github.repository}}/${{matrix.os}}:latest \
-            ghcr.io/${{github.repository}}/${{matrix.os}}:latest_amd64 \
-            ghcr.io/${{github.repository}}/${{matrix.os}}:latest_arm64
-          docker manifest push ghcr.io/${{github.repository}}/${{matrix.os}}:latest
-          docker tag ghcr.io/${{github.repository}}/${{matrix.os}}:latest cran/${{matrix.os}}:latest
-          docker manifest push cran/${{matrix.os}}:latest
+      - uses: int128/docker-manifest-create-action@v2
+        with:
+          tags: |
+            ghcr.io/${{ github.repository }}/${{matrix.os}}:latest
+            cran/${{matrix.os}}:latest
+          sources: |
+            ghcr.io/${{ github.repository }}/${{matrix.os}}:latest_amd64
+            ghcr.io/${{ github.repository }}/${{matrix.os}}:latest_arm64
