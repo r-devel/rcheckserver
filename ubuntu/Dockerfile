@@ -24,6 +24,9 @@ RUN echo "deb [trusted=yes arch=amd64] ${VIENNA}" > /etc/apt/sources.list.d/vien
     apt -yq install rcheckserver &&\
     apt clean
 
+COPY Renviron /etc/R/Renviron.site
+COPY Rprofile /etc/R/Rprofile.site
+
 ## Set a default user. Available via runtime flag
 ## Add user to 'staff' group, granting them write privileges to
 ## /usr/local/lib/R/site.library
@@ -32,10 +35,5 @@ RUN useradd docker \
   && mkdir /home/docker \
   && chown docker:docker /home/docker \
   && usermod -a -G staff docker
-
-## Set RSPM as the default repo to get precompiled packages
-RUN RPROFILE=$(R RHOME)/etc/Rprofile.site && \
-    echo 'options(repos = c(CRAN = "https://p3m.dev/cran/__linux__/noble/latest"))' >> "$RPROFILE" && \
-    echo 'options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version$platform, R.version$arch, R.version$os)))' >> "$RPROFILE"
 
 CMD ["R"]

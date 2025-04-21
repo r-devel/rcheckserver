@@ -1,5 +1,8 @@
 FROM debian:testing
 
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+
 RUN \
 	apt-get update && \
 	apt-get -y dist-upgrade && \
@@ -12,14 +15,13 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen en_US.utf8 \
 	&& /usr/sbin/update-locale LANG=en_US.UTF-8
 
-ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
-
 RUN \
 	echo "deb [trusted=yes arch=amd64] http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
 	apt-get -y update && \
 	DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver &&\
 	apt-get clean
+
+COPY Rprofile /etc/R/Rprofile.site
 
 # ADD entrypoint.sh /entrypoint.sh
 # ENTRYPOINT ["/entrypoint.sh"]
@@ -32,7 +34,5 @@ RUN useradd docker \
 	&& mkdir /home/docker \
 	&& chown docker:docker /home/docker \
 	&& usermod -a -G staff docker
-
-LABEL maintainer "jeroen@berkeley.edu"
 
 CMD ["R"]

@@ -1,0 +1,9 @@
+# Set default repos
+local({
+  options(repos = c(
+    CRAN = "https://cloud.r-project.org",
+    BioCsoft = "https://bioconductor.posit.co/packages/devel/bioc",
+    BioCann = "https://bioconductor.posit.co/packages/devel/data/annotation",
+    BioCexp = "https://bioconductor.posit.co/packages/devel/data/experiment"
+  ))
+})
