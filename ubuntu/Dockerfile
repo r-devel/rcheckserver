@@ -1,30 +1,28 @@
 FROM ubuntu:noble
 
-RUN \
-    apt-get update && \
-    apt-get -y dist-upgrade && \
-    apt-get install -y apt-utils curl software-properties-common dirmngr && \
-#    curl https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
-#    add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
-    add-apt-repository -y ppa:marutter/rrutter4.0 && \
-    apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget debian-keyring &&\
-    apt-get clean
+ENV CRAN="https://cloud.r-project.org/bin/linux/ubuntu noble-cran40/"
+ENV VIENNA="https://statmath.wu.ac.at/AASC/debian testing main non-free"
 
-ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
-#RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xfe6b0f6d941769e0b8ee7c3c3b1c3b572302bcb1" | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -
 
 # hack for broken lam4-dev
 RUN mkdir -p /usr/share/man/man3 && \
     touch /usr/share/man/man3/MPI_Comm_set_name_lam4-dev.3.gz
 
-# install rcheckserver
-RUN echo "deb [trusted=yes arch=amd64] http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
-    apt-get -y update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install rcheckserver &&\
-    apt-get clean
+# install r-base and rcheckserver
+RUN apt -yq update &&\
+    apt -yq dist-upgrade &&\
+    apt -yq install apt-transport-https ca-certificates
+
+RUN echo "deb [trusted=yes arch=amd64] ${VIENNA}" > /etc/apt/sources.list.d/vienna.list && \
+    echo "deb [trusted=yes] ${CRAN}" > /etc/apt/sources.list.d/cran.list && \
+    apt -yq update &&\
+    apt -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget &&\
+    apt -yq install rcheckserver &&\
+    apt clean
 
 ## Set a default user. Available via runtime flag
 ## Add user to 'staff' group, granting them write privileges to
