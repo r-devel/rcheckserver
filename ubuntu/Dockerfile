@@ -20,12 +20,15 @@ RUN apt -yq update &&\
 RUN echo "deb [trusted=yes arch=amd64] ${VIENNA}" > /etc/apt/sources.list.d/vienna.list && \
     echo "deb [trusted=yes] ${CRAN}" > /etc/apt/sources.list.d/cran.list && \
     apt -yq update &&\
-    apt -yq install r-base-dev language-pack-en-base cloc curl parallel vim wget &&\
+    apt -yq install language-pack-en-base cloc curl parallel vim wget r-base-dev &&\
     apt -yq install rcheckserver &&\
     apt clean
 
 COPY Renviron /etc/R/Renviron.site
 COPY Rprofile /etc/R/Rprofile.site
+
+# For outdated r-recommended packages 
+RUN R -e "update.packages(ask=FALSE)"
 
 ## Set a default user. Available via runtime flag
 ## Add user to 'staff' group, granting them write privileges to
