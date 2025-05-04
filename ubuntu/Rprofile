@@ -4,7 +4,7 @@ local({
   distro <- system2('lsb_release', '-sc', stdout = TRUE)
   options(repos = c(
     P3M = sprintf("https://p3m.dev/all/__linux__/%s/latest", distro),
-    BIOC = sprintf("https://bioc.r-universe.dev/bin/linux/%s/%s", distro, r_branch),
+    BIOC = sprintf("https://bioc.r-universe.dev/bin/linux/%s-%s/%s", distro, R.version$arch, r_branch),
     BioCsoft = "https://bioconductor.posit.co/packages/devel/bioc",
     BioCann = "https://bioconductor.posit.co/packages/devel/data/annotation",
     BioCexp = "https://bioconductor.posit.co/packages/devel/data/experiment"
