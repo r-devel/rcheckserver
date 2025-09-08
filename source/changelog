@@ -1,3 +1,9 @@
+rcheckserver (2.16.62) stable; urgency=high
+
+  * Add librsvg2-dev to depends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Mon, 08 Sep 2025 09:47:35 +0200
+
 rcheckserver (2.16.61) stable; urgency=high
 
   * Move ggobi from depends to recommends.
