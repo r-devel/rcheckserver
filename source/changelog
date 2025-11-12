@@ -1,3 +1,9 @@
+rcheckserver (2.16.64) stable; urgency=high
+
+  * Move libsbml-dev from depends to recommends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Wed, 12 Nov 2025 13:33:16 +0100
+
 rcheckserver (2.16.63) stable; urgency=high
 
   * Move bindfs from depends to recommends.
