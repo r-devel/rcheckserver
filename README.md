@@ -15,22 +15,22 @@ The CRAN team always uses the [Debian testing](https://packages.debian.org/testi
 
 ```sh
 # Get the latest image
-docker pull cran/debian
+docker pull ghcr.io/r-devel/rcheckserver/debian
 
 # Start interactive bash shell
-docker run --rm -it cran/debian bash
+docker run --rm -it ghcr.io/r-devel/rcheckserver/debian bash
 ```
 
 To quickly test if a package can be built:
 
 ```sh
-docker run --rm -it cran/debian R -e 'install.packages("pdftools")'
+docker run --rm -it ghcr.io/r-devel/rcheckserver/debian R -e 'install.packages("pdftools")'
 ```
 
 Alternatively, our [ubuntu based image](ubuntu/Dockerfile) provides a similar environment based on the latest Ubuntu (LTS) server, but with the latest R installed from [CRAN](https://cran.r-project.org/bin/linux/ubuntu/). This image is smaller and more stable, with slightly older system libraries than Debian, and only non-breaking updates.
 
 ```sh
-docker run --rm -it cran/ubuntu R -e 'install.packages("magick")'
+docker run --rm -it ghcr.io/r-devel/rcheckserver/ubuntu R -e 'install.packages("magick")'
 ```
 
 ## Source code
