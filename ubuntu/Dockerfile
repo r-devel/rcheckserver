@@ -24,6 +24,12 @@ RUN echo "deb [trusted=yes arch=amd64] ${VIENNA}" > /etc/apt/sources.list.d/vien
     apt -yq install rcheckserver &&\
     apt clean
 
+# Default cargo on Ubuntu LTS is often too old
+# Maybe we can disable this after updating to Ubuntu 26.04
+RUN apt -yq install cargo-1.89 &&\
+    update-alternatives --force --install /usr/bin/rust rust /usr/lib/rust-1.89 100 --slave /usr/bin/rustc rustc /usr/bin/rustc-1.89 &&\
+    update-alternatives --force --install /usr/bin/cargo cargo /usr/bin/cargo-1.89 100
+
 COPY Renviron /etc/R/Renviron.site
 COPY Rprofile /etc/R/Rprofile.site
 
