@@ -14,7 +14,7 @@ jobs:
       - name: Download latest rcheckserver sources
         run: |
           apt-get update && \
-          apt-get install -y curl && \
+          apt-get install -y curl ca-certificates && \
           echo "deb [trusted=yes]  http://statmath.wu.ac.at/AASC/debian testing main non-free" > /etc/apt/sources.list.d/rcheckserver.list && \
           apt-get -y update 
           apt download rcheckserver &&\
