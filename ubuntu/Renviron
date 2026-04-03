@@ -1,4 +1,3 @@
-LANG=en_US.UTF-8
 R_BROWSER="echo"
 R_PDFVIEWER="echo"
 #RGL_USE_NULL=TRUE
