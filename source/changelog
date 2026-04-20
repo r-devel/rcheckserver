@@ -1,3 +1,11 @@
+rcheckserver (2.16.66) stable; urgency=high
+
+  * Add libcln-dev and libginac-dev to depends.
+
+  * Move default-d-compiler back from depends to recommends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Mon, 20 Apr 2026 11:54:36 +0200
+
 rcheckserver (2.16.65) stable; urgency=high
 
   * Drop libboost-system-dev from depends.
