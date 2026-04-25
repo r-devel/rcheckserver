@@ -1,6 +1,8 @@
-FROM ubuntu:noble
+FROM ubuntu:resolute
 
-ENV CRAN="https://cloud.r-project.org/bin/linux/ubuntu noble-cran40/"
+#ENV CRAN="https://cloud.r-project.org/bin/linux/ubuntu resolute-cran40/"
+ENV CRAN="https://ppa.launchpadcontent.net/cran/r-4.6/ubuntu resolute main"
+
 ENV VIENNA="https://statmath.wu.ac.at/AASC/debian testing main non-free"
 
 ENV LC_ALL=en_US.UTF-8
@@ -26,9 +28,9 @@ RUN echo "deb [trusted=yes arch=amd64] ${VIENNA}" > /etc/apt/sources.list.d/vien
 
 # Default cargo on Ubuntu LTS is often too old
 # Maybe we can disable this after updating to Ubuntu 26.04
-RUN apt -yq install cargo-1.89 &&\
-    update-alternatives --force --install /usr/bin/rust rust /usr/lib/rust-1.89 100 --slave /usr/bin/rustc rustc /usr/bin/rustc-1.89 &&\
-    update-alternatives --force --install /usr/bin/cargo cargo /usr/bin/cargo-1.89 100
+#RUN apt -yq install cargo-1.89 &&\
+#    update-alternatives --force --install /usr/bin/rust rust /usr/lib/rust-1.89 100 --slave /usr/bin/rustc rustc /usr/bin/rustc-1.89 &&\
+#    update-alternatives --force --install /usr/bin/cargo cargo /usr/bin/cargo-1.89 100
 
 COPY Renviron /etc/R/Renviron.site
 COPY Rprofile /etc/R/Rprofile.site
