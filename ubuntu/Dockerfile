@@ -1,7 +1,7 @@
 FROM ubuntu:resolute
 
-#ENV CRAN="https://cloud.r-project.org/bin/linux/ubuntu resolute-cran40/"
-ENV CRAN="https://ppa.launchpadcontent.net/cran/r-4.6/ubuntu resolute main"
+ENV CRAN="https://cloud.r-project.org/bin/linux/ubuntu resolute-cran40/"
+#ENV CRAN="https://ppa.launchpadcontent.net/cran/r-4.6/ubuntu resolute main"
 
 ENV VIENNA="https://statmath.wu.ac.at/AASC/debian testing main non-free"
 
@@ -9,6 +9,11 @@ ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Use a reliable Ubuntu mirror
+RUN sed -i /etc/apt/sources.list.d/ubuntu.sources \
+    -e 's|archive\.ubuntu\.com|mirror.nl.leaseweb.net|g' \
+    -e 's|security\.ubuntu\.com|mirror.nl.leaseweb.net|g' \
+    -e 's|ports\.ubuntu\.com|mirror.nl.leaseweb.net|g'
 
 # hack for broken lam4-dev
 RUN mkdir -p /usr/share/man/man3 && \
@@ -36,7 +41,7 @@ COPY Renviron /etc/R/Renviron.site
 COPY Rprofile /etc/R/Rprofile.site
 
 # For outdated r-recommended packages 
-RUN R -e "update.packages(ask=FALSE)"
+RUN R -e "stopifnot(getRversion() >= '4.6'); update.packages(ask=FALSE)"
 
 ## Set a default user. Available via runtime flag
 ## Add user to 'staff' group, granting them write privileges to
