@@ -22,10 +22,11 @@ RUN mkdir -p /usr/share/man/man3 && \
 # install r-base and rcheckserver
 RUN apt -yq update &&\
     apt -yq dist-upgrade &&\
-    apt -yq install apt-transport-https ca-certificates
+    apt -yq install apt-transport-https ca-certificates curl
 
 RUN echo "deb [trusted=yes arch=amd64] ${VIENNA}" > /etc/apt/sources.list.d/vienna.list && \
     echo "deb [trusted=yes] ${CRAN}" > /etc/apt/sources.list.d/cran.list && \
+    curl -sSL https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc -o /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
     apt -yq update &&\
     apt -yq install language-pack-en-base cloc curl parallel vim wget r-base-dev &&\
     apt -yq install rcheckserver &&\
