@@ -1,3 +1,12 @@
+rcheckserver (2.16.67) stable; urgency=high
+
+  * Add swi-prolog to depends.
+
+  * Add forgejo-cli gh (currently only in unstable) and quarto
+    (currently only in AASC) to recommends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Mon, 22 Jun 2026 11:45:53 +0200
+
 rcheckserver (2.16.66) stable; urgency=high
 
   * Add libcln-dev and libginac-dev to depends.
