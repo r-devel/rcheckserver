@@ -1,3 +1,9 @@
+rcheckserver (2.16.68) stable; urgency=high
+
+  * Add latexml to depends.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Tue, 28 Jul 2026 11:08:04 +0200
+
 rcheckserver (2.16.67) stable; urgency=high
 
   * Add swi-prolog to depends.
