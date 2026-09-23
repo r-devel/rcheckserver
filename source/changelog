@@ -1,3 +1,9 @@
+rcheckserver (2.16.69) stable; urgency=high
+
+  * Replace python3-pkg-resources by python3-setuptools.
+
+ -- Kurt Hornik <Kurt.Hornik@wu.ac.at>  Wed, 23 Sep 2026 13:19:09 +0200
+
 rcheckserver (2.16.68) stable; urgency=high
 
   * Add latexml to depends.
