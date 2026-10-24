@@ -52,3 +52,26 @@ jobs:
           git add source
           git commit -m "Update at $(date)" || exit 0
           git push
+
+  keep-alive:
+    runs-on: ubuntu-latest
+    needs: download
+    if: always()
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update activity timestamp
+        run: |
+          git checkout -B activity-log
+          mkdir -p .github
+          date > .github/last-run.txt
+          git add .github/last-run.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update activity timestamp [skip ci]"
+          git push origin activity-log --force
